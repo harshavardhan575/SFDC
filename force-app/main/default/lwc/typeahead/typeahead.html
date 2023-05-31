@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title={sectionName} icon-name="standard:search">
+        <div style="position:relative;" class="slds-m-bottom_x-small">
+            <div class="slds-m-left_x-small" >
+                <lightning-input
+                    type="search"
+                    variant="label-hidden"
+                    onchange={handleChange}
+                    value={searchKey}></lightning-input>
+            </div>
+            <template if:true={showSelection}>  
+                <div style="position:absolute;z-index:100;left:0;right:0;margin-left:0;margin-right:0;">
+                    <div class="slds-m-left_x-small slds-m-right_xx-small slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid" role="listbox" tabindex="0" >
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <template for:each={addresses} for:item="it">  
+                                <li role="presentation" class="slds-listbox__item" onclick={handleSelect} key={it.formatted_address} data-id={it.index} style="cursor: pointer;">
+                                    <div id="option76" class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-is-selected" role="option">
+                                        <span class="slds-media__body">
+                                            <lightning-formatted-rich-text value={it.formatted_address}></lightning-formatted-rich-text>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
