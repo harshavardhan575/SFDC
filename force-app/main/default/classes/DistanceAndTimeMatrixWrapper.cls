@@ -1,3 +1,8 @@
+/*
+ Author : Achyutha Harsha Choudavaram
+ Created : 05/30/2023
+ Description : Wrapper class to parse response json to object.
+*/
 public class DistanceAndTimeMatrixWrapper{
   public String[] destination_addresses;
   public String[] origin_addresses;
@@ -23,31 +28,4 @@ public class DistanceAndTimeMatrixWrapper{
   public static DistanceAndTimeMatrixWrapper parse(String json){
     return (DistanceAndTimeMatrixWrapper) System.JSON.deserialize(json, DistanceAndTimeMatrixWrapper.class);
   }
-    /*
-  static testMethod void testParse() {
-    String json=    '{'+
-    '   "destination_addresses" : [ "Thane, Maharashtra, India" ],'+
-    '   "origin_addresses" : [ "Wakad, Pimpri-Chinchwad, Maharashtra, India" ],'+
-    '   "rows" : ['+
-    '      {'+
-    '         "elements" : ['+
-    '            {'+
-    '               "distance" : {'+
-    '                  "text" : "82.5 mi",'+
-    '                  "value" : 132839'+
-    '               },'+
-    '               "duration" : {'+
-    '                  "text" : "1 day 3 hours",'+
-    '                  "value" : 97396'+
-    '               },'+
-    '               "status" : "OK"'+
-    '            }'+
-    '         ]'+
-    '      }'+
-    '   ],'+
-    '   "status" : "OK"'+
-    '}';
-    DistanceAndTimeMatrixWrapper obj = parse(json);
-    System.assert(obj != null);
-  }*/
 }

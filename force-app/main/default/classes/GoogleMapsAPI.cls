@@ -1,6 +1,12 @@
+/*
+ Author : Achyutha Harsha Choudavaram
+ Created : 05/30/2023
+ Description : API class to make a callout to google maps and get the response of search,distace/duration
+*/
 public class GoogleMapsAPI {
     
-    Public String vHash = 'QWNoeXV0aGEgSGFyc2hhIENob3VkYXZhcmFt';
+    public static String vHash = 'QWNoeXV0aGEgSGFyc2hhIENob3VkYXZhcmFt';
+    public static MapsAPIKey__c myCS1 = MapsAPIKey__c.getValues('API_KEY');
 	
     @AuraEnabled( cacheable = true )  
     static public String searchPlace(String searchString){
@@ -8,7 +14,7 @@ public class GoogleMapsAPI {
         Http h = new Http();        
         HttpRequest req = new HttpRequest();
         
-    	String yourAPiKey = 'AIzaSyC_Z4sAfj1muk8gyKF6Y9RSZTRqXkH13lQ'; // Enter your Api key which you have created in google api console
+    	String yourAPiKey = myCS1.Key__c; // Enter your Api key which you have created in google api console
         String key = '&key=' + yourAPiKey;
         String endPoint = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=' + address + '&inputtype=textquery&fields=formatted_address%2Cname' + key + '&ipbias' ;
       	req.setEndpoint(endPoint + key);
@@ -24,7 +30,7 @@ public class GoogleMapsAPI {
         Http h = new Http();        
         HttpRequest req = new HttpRequest();
         
-    	String yourAPiKey = 'AIzaSyC_Z4sAfj1muk8gyKF6Y9RSZTRqXkH13lQ'; // Enter your Api key which you have created in google api console
+    	String yourAPiKey = myCS1.Key__c; // Enter your Api key which you have created in google api console
         String key = '&key=' + yourAPiKey;
         String endPoint = 'https://maps.googleapis.com/maps/api/distancematrix/json?destinations=' + EncodingUtil.urlEncode(destinationAddress, 'UTF-8') + '&origins='+ EncodingUtil.urlEncode(sourceAddress, 'UTF-8') +'&&departure_time=now&units=imperial&mode=driving' + key + '&ipbias' ;
       	req.setEndpoint(endPoint + key);
@@ -50,6 +56,7 @@ public class GoogleMapsAPI {
         return response;
     }   
     
+    @testVisible
     class MatrixWrapper {
         @AuraEnabled public String distance;
         @AuraEnabled public String duration;

@@ -1,0 +1,1 @@
+{"destination_addresses":["3151 Apex Peakway, Apex, NC 27502, USA"],"origin_addresses":["1201 Beaver Creek Commons Dr, Apex, NC 27502, USA"],"rows":[{"elements":[{"distance":{"text":"3.4 mi","value":5419},"duration":{"text":"10 mins","value":615},"duration_in_traffic":{"text":"12 mins","value":748},"status":"OK"}]}],"status":"OK"}
